@@ -1,29 +1,31 @@
 import 'package:flutter/material.dart';
-import 'package:masala_headlines_flutter/services/news.dart';
+import 'package:provider/provider.dart';
+
+import '../services/news_data.dart';
 
 class HeadlinesScreen extends StatefulWidget {
-  const HeadlinesScreen({
-    super.key,
-    required this.newsData,
-  });
-
-  final dynamic newsData;
+  const HeadlinesScreen({super.key});
 
   @override
   State<HeadlinesScreen> createState() => _HeadlinesScreenState();
 }
 
 class _HeadlinesScreenState extends State<HeadlinesScreen> {
+  String centerText = 'Headlines Screen';
+
   @override
   void initState() {
     super.initState();
-    updateUI(widget.newsData);
+    updateUI();
   }
 
-  void updateUI(dynamic newsData) {
-    print(newsData);
+  void updateUI() {
+    var newsArticles =
+        Provider.of<NewsData>(context, listen: false).getNewsArticles;
     setState(() {
-      //
+      if (newsArticles == null) {
+        centerText = 'Network Error';
+      }
     });
   }
 
@@ -39,15 +41,15 @@ class _HeadlinesScreenState extends State<HeadlinesScreen> {
           actions: [
             IconButton(
               onPressed: () async {
-                updateUI(await NewsModel().getNews());
+                updateUI();
               },
               icon: const Icon(Icons.refresh),
             )
           ],
         ),
-        body: const SafeArea(
+        body: SafeArea(
           child: Center(
-            child: Text('Headlines Sections'),
+            child: Text(centerText),
           ),
         ),
       ),

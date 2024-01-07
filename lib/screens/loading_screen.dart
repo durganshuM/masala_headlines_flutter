@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:masala_headlines_flutter/screens/headlines_screen.dart';
-import 'package:masala_headlines_flutter/services/news.dart';
+import 'package:provider/provider.dart';
+
+import '../services/news_data.dart';
 
 class LoadingScreen extends StatefulWidget {
   const LoadingScreen({super.key});
@@ -18,15 +20,13 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void getNewsData() async {
-    var newsData = await NewsModel().getNews();
-    navigation(newsData: newsData);
+    await Provider.of<NewsData>(context, listen: false).getNews();
+    navigation();
   }
 
-  void navigation({required dynamic newsData}) {
-    Navigator.push(
-        context,
-        MaterialPageRoute(
-            builder: (context) => HeadlinesScreen(newsData: newsData)));
+  void navigation() {
+    Navigator.push(context,
+        MaterialPageRoute(builder: (context) => const HeadlinesScreen()));
   }
 
   @override
@@ -34,9 +34,9 @@ class _LoadingScreenState extends State<LoadingScreen> {
     return const Scaffold(
       body: SafeArea(
         child: Center(
-          child: SpinKitFoldingCube(
+          child: SpinKitThreeBounce(
             color: Colors.blueGrey,
-            size: 75.0,
+            size: 50.0,
           ),
         ),
       ),

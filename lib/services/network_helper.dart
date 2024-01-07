@@ -11,13 +11,17 @@ class NetworkHelper {
     var url = Uri.parse(baseURL);
     print(baseURL);
 
-    http.Response response = await http.get(url);
+    try {
+      http.Response response = await http.get(url);
 
-    if (response.statusCode == 200) {
-      String data = response.body;
-      return jsonDecode(data);
-    } else {
-      print(response.statusCode);
+      if (response.statusCode == 200) {
+        String data = response.body;
+        return jsonDecode(data);
+      } else {
+        print(response.statusCode);
+      }
+    } catch (e) {
+      print('Network Error: $e');
     }
 
     return null;
