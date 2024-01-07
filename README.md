@@ -34,10 +34,11 @@
 ### API Key
 
 1. Obtain a free API key from News API: [https://newsapi.org/](https://newsapi.org/)
-2. Create a file named `api_key.dart` in the `lib` directory.
-3. Add the following code, replacing `YOUR_API_KEY` with your actual API key:
+2. Open the `services` directory in the `lib` directory.
+3. Open a file named `news_data.dart` in the `services` directory.
+4. Add your API key to the variable `apiKey`, replacing the default API key:
    ```dart
-   const String apiKey = 'YOUR_API_KEY';
+   final apiKey = 'YOUR_API_KEY';
    ```
 
 ### Running the App
@@ -53,11 +54,3 @@
 - Flutter
 - Provider (state management)
 - News API ([https://newsapi.org/](https://newsapi.org/))
-
-##  Contributing
-
-We welcome contributions! Feel free to open issues or pull requests.
-
-##  License
-
-This project is licensed under the MIT License - see the `LICENSE` file for details.
