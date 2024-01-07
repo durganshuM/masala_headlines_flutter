@@ -1,24 +1,32 @@
+import 'dart:collection';
+import 'dart:convert';
+
 import 'package:flutter/foundation.dart';
+import 'package:masala_headlines_flutter/models/news_headline_model.dart';
 import 'package:masala_headlines_flutter/services/network_helper.dart';
 
-const apiKey = '266819b7a57c4e648f12e56dedeb5430';
-const baseURL =
-    'https://newsapi.org/v2/top-headlines?country=in&apiKey=$apiKey';
-
 class NewsData extends ChangeNotifier {
-  List _newsArticles = [];
+  final apiKey = '266819b7a57c4e648f12e56dedeb5430';
+  final baseURL = 'https://newsapi.org/v2/top-headlines?country=in&apiKey=';
+  List<NewsArticle> _newsArticles = [];
 
   Future<void> getNews() async {
-    NetworkHelper networkHelper = NetworkHelper(baseURL);
+    NetworkHelper networkHelper = NetworkHelper(baseURL + apiKey);
+    var responseData = await networkHelper.getData();
 
-    var decodedData = await networkHelper.getData();
-
-    _newsArticles = decodedData['articles'];
-    for (var i = 0; i < _newsArticles.length; i++) {
-      print(_newsArticles[i]);
+    try {
+      NewsHeadlineModel newsHeadlineModel = NewsHeadlineModel.fromJson(
+          jsonDecode(responseData) as Map<String, dynamic>);
+      _newsArticles = newsHeadlineModel.articles!;
+      notifyListeners();
+    } catch (e) {
+      print(e);
     }
-    notifyListeners();
   }
 
-  get getNewsArticles => _newsArticles;
+  get newsArticlesLength => _newsArticles.length;
+
+  UnmodifiableListView<NewsArticle> get newsArticles {
+    return UnmodifiableListView(_newsArticles);
+  }
 }

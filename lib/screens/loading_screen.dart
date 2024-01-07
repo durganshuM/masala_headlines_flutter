@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:masala_headlines_flutter/screens/headlines_screen.dart';
+import 'package:masala_headlines_flutter/utilities/constants.dart';
 import 'package:provider/provider.dart';
 
 import '../services/news_data.dart';
@@ -25,17 +26,22 @@ class _LoadingScreenState extends State<LoadingScreen> {
   }
 
   void navigation() {
-    Navigator.push(context,
-        MaterialPageRoute(builder: (context) => const HeadlinesScreen()));
+    Navigator.pushAndRemoveUntil(
+        context,
+        MaterialPageRoute(
+          builder: (context) => const HeadlinesScreen(),
+        ),
+        (route) => false);
   }
 
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      backgroundColor: kPrimaryColor,
       body: SafeArea(
         child: Center(
           child: SpinKitThreeBounce(
-            color: Colors.blueGrey,
+            color: Colors.black,
             size: 50.0,
           ),
         ),
