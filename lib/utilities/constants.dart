@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 
-const kPrimaryColor = Color(0xffF2EBDF);
-const kSecondaryColor = Color(0xffFFFFFF);
+const kPrimaryColor1 = Color(0xff2C3639);
+const kPrimaryColor2 = Color(0xff3F4E4F);
+const kSecondaryColor1 = Color(0xffA27B5C);
+const kSecondaryColor2 = Color(0xffDCD7C9);
 
 const kNewsScreenTitleTextStyle = TextStyle(
   fontFamily: 'Merriweather',
@@ -18,6 +20,21 @@ const kHeadlinesScreenTextStyle = TextStyle(
   fontFamily: 'Merriweather',
   fontWeight: FontWeight.bold,
   fontSize: 16,
+  color: kSecondaryColor2,
+);
+
+const kAppBarTitleTextStyle = TextStyle(
+  fontFamily: 'PlusJakartaSans',
+  fontWeight: FontWeight.bold,
+  color: kSecondaryColor2,
+);
+
+const kSizedBox5 = SizedBox(
+  height: 5.0,
+);
+
+const kSizedBox20 = SizedBox(
+  height: 20.0,
 );
 
 const kNoImageAvailableURL = NetworkImage(

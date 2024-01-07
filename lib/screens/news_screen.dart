@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:masala_headlines_flutter/models/news_headline_model.dart';
 import 'package:masala_headlines_flutter/utilities/constants.dart';
 
@@ -11,9 +12,9 @@ class NewsScreen extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: const Color(0xffF2EBDF),
+        backgroundColor: kSecondaryColor2,
         appBar: AppBar(
-          backgroundColor: const Color(0xffF2EBDF),
+          backgroundColor: kPrimaryColor2,
           shadowColor: Colors.black,
           leading: IconButton(
             onPressed: () {
@@ -21,7 +22,7 @@ class NewsScreen extends StatelessWidget {
             },
             icon: const Icon(
               Icons.arrow_back_outlined,
-              color: Colors.black,
+              color: kSecondaryColor2,
             ),
           ),
         ),
@@ -39,40 +40,33 @@ class NewsScreen extends StatelessWidget {
                           : NetworkImage(currentNewsArticle.urlToImage!),
                     ),
                   ),
-                  const SizedBox(
-                    height: 5.0,
-                  ),
+                  kSizedBox5,
                   Text(
                     currentNewsArticle.title.toString(),
                     style: kNewsScreenTitleTextStyle,
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+                  kSizedBox20,
                   Text(
                     (currentNewsArticle.description == null)
                         ? 'No Description Available'
                         : currentNewsArticle.description.toString(),
                     style: kNewsScreenContentTextStyle,
                   ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+                  kSizedBox20,
                   Text(
                     (currentNewsArticle.content == null)
                         ? 'No Content Available'
                         : currentNewsArticle.content.toString(),
                     style: kNewsScreenContentTextStyle,
                   ),
-                  const SizedBox(
-                    height: 20.0,
+                  kSizedBox20,
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 30.0),
+                    child: Divider(
+                      color: Colors.grey,
+                    ),
                   ),
-                  const Divider(
-                    color: Colors.grey,
-                  ),
-                  const SizedBox(
-                    height: 20.0,
-                  ),
+                  kSizedBox20,
                   Row(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -119,7 +113,7 @@ class NewsScreen extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       const Text(
-                        'Article Link: ',
+                        'Full Article: ',
                         style: TextStyle(fontWeight: FontWeight.bold),
                       ),
                       Flexible(
@@ -127,6 +121,16 @@ class NewsScreen extends StatelessWidget {
                           currentNewsArticle.url.toString(),
                         ),
                       ),
+                      IconButton(
+                        onPressed: () async {
+                          await Clipboard.setData(ClipboardData(
+                              text: currentNewsArticle.url.toString()));
+                        },
+                        icon: const Icon(
+                          Icons.copy,
+                          color: Colors.black,
+                        ),
+                      )
                     ],
                   ),
                 ],

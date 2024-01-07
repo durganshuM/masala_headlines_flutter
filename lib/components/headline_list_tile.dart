@@ -27,45 +27,50 @@ class HeadlineListTile extends StatelessWidget {
         },
         child: Container(
           decoration: BoxDecoration(
-            color: kSecondaryColor,
+            color: kSecondaryColor1,
             borderRadius: BorderRadius.circular(20.0),
           ),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              ClipRRect(
-                borderRadius: BorderRadius.circular(20.0),
-                child: Image(
-                  image: (currentNewsArticle.urlToImage == null)
-                      ? const NetworkImage(
-                          'https://t4.ftcdn.net/jpg/04/99/93/31/360_F_499933117_ZAUBfv3P1HEOsZDrnkbNCt4jc3AodArl.jpg')
-                      : NetworkImage(currentNewsArticle.urlToImage!),
-                ),
+              Stack(
+                alignment: Alignment.bottomCenter,
+                children: [
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: Image(
+                      image: (currentNewsArticle.urlToImage == null)
+                          ? kNoImageAvailableURL
+                          : NetworkImage(currentNewsArticle.urlToImage!),
+                    ),
+                  ),
+                  Container(
+                    decoration: const BoxDecoration(
+                        color: Color(0x90000000),
+                        borderRadius: BorderRadius.only(
+                          bottomRight: Radius.circular(20.0),
+                          bottomLeft: Radius.circular(20.0),
+                        )),
+                    padding: const EdgeInsets.all(5.0),
+                    child: Column(
+                      children: [
+                        Text(
+                          currentNewsArticle.title!,
+                          style: kHeadlinesScreenTextStyle,
+                        ),
+                        kSizedBox5,
+                        Text(
+                          'Source: ${currentNewsArticle.source!.name!}',
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                            color: kSecondaryColor2,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(
-                height: 5.0,
-              ),
-              Padding(
-                padding: const EdgeInsets.all(10.0),
-                child: Column(
-                  children: [
-                    Text(
-                      currentNewsArticle.title!,
-                      style: kHeadlinesScreenTextStyle,
-                    ),
-                    const SizedBox(
-                      height: 5.0,
-                    ),
-                    Text(
-                      'Source: ${currentNewsArticle.source!.name!}',
-                      textAlign: TextAlign.left,
-                      style: TextStyle(
-                        color: Colors.grey[700],
-                      ),
-                    ),
-                  ],
-                ),
-              )
             ],
           ),
         ),

@@ -21,16 +21,13 @@ class _HeadlinesScreenState extends State<HeadlinesScreen> {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: Scaffold(
-        backgroundColor: kPrimaryColor,
+        backgroundColor: kPrimaryColor1,
         appBar: AppBar(
-          backgroundColor: kPrimaryColor,
+          backgroundColor: kPrimaryColor2,
           shadowColor: Colors.black,
           title: const Text(
             'Masala Headlines',
-            style: TextStyle(
-              fontFamily: 'PlusJakartaSans',
-              fontWeight: FontWeight.bold,
-            ),
+            style: kAppBarTitleTextStyle,
           ),
           centerTitle: true,
           actions: [
@@ -44,7 +41,7 @@ class _HeadlinesScreenState extends State<HeadlinesScreen> {
               },
               icon: const Icon(
                 Icons.refresh,
-                color: Colors.black,
+                color: kSecondaryColor2,
               ),
             )
           ],
