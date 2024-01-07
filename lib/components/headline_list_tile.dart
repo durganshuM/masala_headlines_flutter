@@ -46,11 +46,12 @@ class HeadlineListTile extends StatelessWidget {
                   ),
                   Container(
                     decoration: const BoxDecoration(
-                        color: Color(0x90000000),
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(20.0),
-                          bottomLeft: Radius.circular(20.0),
-                        )),
+                      color: Color(0x90000000),
+                      borderRadius: BorderRadius.only(
+                        bottomRight: Radius.circular(20.0),
+                        bottomLeft: Radius.circular(20.0),
+                      ),
+                    ),
                     padding: const EdgeInsets.all(5.0),
                     child: Column(
                       children: [
