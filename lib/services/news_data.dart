@@ -13,6 +13,7 @@ class NewsData extends ChangeNotifier {
   Future<void> getNews() async {
     NetworkHelper networkHelper = NetworkHelper(baseURL + apiKey);
     var responseData = await networkHelper.getData();
+    _newsArticles = [];
 
     try {
       NewsHeadlineModel newsHeadlineModel = NewsHeadlineModel.fromJson(

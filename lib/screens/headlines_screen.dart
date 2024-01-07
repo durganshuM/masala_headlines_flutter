@@ -14,7 +14,7 @@ class HeadlinesScreen extends StatefulWidget {
 }
 
 class _HeadlinesScreenState extends State<HeadlinesScreen> {
-  String centerText = 'Headlines Screen';
+  String errorText = 'Network Error';
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +49,10 @@ class _HeadlinesScreenState extends State<HeadlinesScreen> {
         body: SafeArea(
           child: Center(
             child: (Provider.of<NewsData>(context).newsArticlesLength == 0)
-                ? Text(centerText)
+                ? Text(
+                    errorText,
+                    style: kHeadlinesScreenTextStyle,
+                  )
                 : const HeadlinesListView(),
           ),
         ),
