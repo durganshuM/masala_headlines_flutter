@@ -40,8 +40,8 @@ class _LoadingScreenState extends State<LoadingScreen> {
       backgroundColor: kPrimaryColor1,
       body: SafeArea(
         child: Center(
-          child: SpinKitThreeBounce(
-            color: kPrimaryColor2,
+          child: SpinKitDoubleBounce(
+            color: kSecondaryColor2,
             size: 50.0,
           ),
         ),
